@@ -8,6 +8,7 @@ var allImageNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubbleg
 
 var allImages = [];
 // console.log(allImageNames);
+var clicksData = [];
 
 
 function FocusImage(name) {
@@ -74,6 +75,7 @@ function handleClick() {
       allImages[i].numshown += 1;
       console.log(allImages[i].name + ' has ' + allImages[i].numshown + ' views.');
       allImages[i].numclicks += 1;
+      clicksData[i] = allImages[i].numclicks;
       console.log(allImages[i].name + ' has ' + allImages[i].numclicks + ' clicks.');
     }
   }
@@ -87,67 +89,39 @@ container.addEventListener('click', handleClick);
 randomPic();
 
 
+var data = {
+  labels: allImageNames,
+  datasets: [
+    {
+      label: 'Number Of Clicks',
+      data: clicksData,
+      backgroundColor:
+      'seagreen',
 
+      hoverBackgroundColor:
+      'lightblue'
+    }
+  ]
 
-// var imageElementOne = document.getElementById('image1');
-// console.log(imageElementOne);
-// imageElementOne.addEventListener('click', handleClickOne);
-// function handleClickOne(event) {
-//   document.getElementById('image1').src = allImages[i].path;
-//   console.log('hey look at me');
-// };
-//
-// var imageElementTwo = document.getElementById('image2');
-// console.log(imageElementTwo);
-// imageElementTwo.addEventListener('click', handleClickTwo);
-// function handleClickTwo(event) {
-//   document.getElementById('image2').src = allImages[i].path;
-//   console.log('hey look at me 2');
-// };
-//
-// var imageElementThree = document.getElementById('image3');
-// console.log(imageElementThree);
-// imageElementThree.addEventListener('click', handleClickThree);
-// function handleClickThree(event) {
-//   document.getElementById('image3').src = allImages[i].path;
-//   console.log('hey look at me 3');
-// };
+};
 
-// var firstRand = Math.floor(Math.random() * (allImages.length - 0));
-// console.log(firstRand);
+function drawChart() {
+  var ctx = document.getElementById('product').getContext('2d');
+  productChart = new Chart(ctx,{
+    type: 'bar',
+    data: data,
+    options: {
+      responsive: false
+    }
 
+  });
+  chartDrawn = true;
+}
 
-// randomNum(0, allImages.length);
+function hideChart() {
+  document.getElementById('chart').hidden = true;
+}
 
-
-
-// function randomPic() {
-//   var num = randomNum();
-//   console.log(num);
-//   document.getElementById('image1').src = allImages[num].path;
-//   document.getElementById('image2').src = allImages[num].path;
-//   document.getElementById('image3').src = allImages[num].path;
-// }
-// randomPic();
-// var secondRand = Math.floor(Math.random() * allImages.length);
-// while (firstRand === secondRand){
-//   var secondRand = Math.floor(Math.random() * allImages.length);
-// }
-// console.log(secondRand);
-//
-// var thirdRand = Math.floor(Math.random() * allImages.length);
-// while (firstRand === thirdRand || secondRand === thirdRand){
-//   var thirdRand = Math.floor(Math.random() * allImages.length);
-// }
-// console.log(thirdRand);
-
-// var imageLeft = document.getElementById('image1');
-// image1.src = allImages[i].path
-
-
-
-//Sam's Demo
-// var container = document.getElementById('container');
-// var image1 = document.getElementById('image1');
-// var image2 = document.getElementById('image2');
-// var image3 = document.getElementById('image3');
+document.getElementById('show-chart').addEventListener('click', function(){
+  drawChart();
+});
