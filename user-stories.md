@@ -18,6 +18,8 @@ Game Plan:
 - Use flex box to even space out each image div evenly  -->
 
 JS Game Plan:
-- Create object
+<!-- - Create object
 - Add event handler
-- Add event listener
+- Add event listener -->
+- Create event for randomizing pictures
+- Keep tally of images clicked 

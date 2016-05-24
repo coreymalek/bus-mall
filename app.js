@@ -1,17 +1,20 @@
 var allImageNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 
 var allImages = [];
+// console.log(allImageNames);
 
 function FocusImage(name) {
   this.name = name;
   this.path = '../images/' + name + '.jpg';
   this.numclicks = 0;
   this.numshown = 0;
-  allImageNames.push(this);
-}
+  allImages.push(this);
+};
 
-for (i = 0; i < allImageNames.length; i++);{
+for (var i = 0; i < allImageNames.length; i++) {
+  // console.log('in the for loop');
   var clickImages = new FocusImage(allImageNames[i]);
+  // console.log(clickImages);
 };
 
 
@@ -36,5 +39,20 @@ function handleClickThree(event) {
   console.log('hey look at me 3');
 };
 
+// var firstRand = Math.floor(Math.random() * (allImages.length - 0));
+// console.log(firstRand);
 
-var allImages = Math.random(allImageNames.length - 1);
+var firstRand = Math.floor(Math.random() * allImages.length);
+console.log(firstRand);
+
+var secondRand = Math.floor(Math.random() * allImages.length);
+while (firstRand === secondRand){
+  var secondRand = Math.floor(Math.random() * allImages.length);
+}
+console.log(secondRand);
+
+var thirdRand = Math.floor(Math.random() * allImages.length);
+while (firstRand === thirdRand || secondRand === thirdRand){
+  var thirdRand = Math.floor(Math.random() * allImages.length);
+}
+console.log(thirdRand);
