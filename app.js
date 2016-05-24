@@ -5,7 +5,7 @@ console.log(allImageNames);
 
 function FocusImage(name) {
   this.name = name;
-  this.path = 'images/' + [] + '.jpg';
+  this.path = 'images/' + name + '.jpg';
   this.numclicks = 0;
   this.numshown = 0;
   allImages.push(this);
@@ -23,7 +23,7 @@ var imageElementOne = document.getElementById('image1');
 console.log(imageElementOne);
 imageElementOne.addEventListener('click', handleClickOne);
 function handleClickOne(event) {
-  document.getElementById('image1').src = allImages[i].path;
+  document.getElementById('image1').src = allImages[1].path;
   console.log('hey look at me');
 };
 
@@ -46,20 +46,30 @@ function handleClickThree(event) {
 // var firstRand = Math.floor(Math.random() * (allImages.length - 0));
 // console.log(firstRand);
 
-var firstRand = Math.floor(Math.random() * allImages.length);
-console.log(firstRand);
-
-var secondRand = Math.floor(Math.random() * allImages.length);
-while (firstRand === secondRand){
-  var secondRand = Math.floor(Math.random() * allImages.length);
+function randomNum() {
+  var numberRand = Math.floor(Math.random() * allImages.length);
+  return numberRand;
 }
-console.log(secondRand);
 
-var thirdRand = Math.floor(Math.random() * allImages.length);
-while (firstRand === thirdRand || secondRand === thirdRand){
-  var thirdRand = Math.floor(Math.random() * allImages.length);
+function randomPic() {
+  var num = randomNum();
+  console.log(num);
+  document.getElementById('image1').src = allImages[num].path;
+  document.getElementById('image2').src = allImages[num].path;
+  document.getElementById('image3').src = allImages[num].path;
 }
-console.log(thirdRand);
+randomPic();
+// var secondRand = Math.floor(Math.random() * allImages.length);
+// while (firstRand === secondRand){
+//   var secondRand = Math.floor(Math.random() * allImages.length);
+// }
+// console.log(secondRand);
+//
+// var thirdRand = Math.floor(Math.random() * allImages.length);
+// while (firstRand === thirdRand || secondRand === thirdRand){
+//   var thirdRand = Math.floor(Math.random() * allImages.length);
+// }
+// console.log(thirdRand);
 
 // var imageLeft = document.getElementById('image1');
 // image1.src = allImages[i].path
