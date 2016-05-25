@@ -59,6 +59,9 @@ function randomPic() {
     counter++;
 
   } else {
+    document.getElementById('show-chart').addEventListener('click', function(){
+      drawChart();});
+    counter = 0;
     console.log('reached 25 counts');
     //show chart
     //0 counter
@@ -122,6 +125,5 @@ function hideChart() {
   document.getElementById('chart').hidden = true;
 }
 
-document.getElementById('show-chart').addEventListener('click', function(){
-  drawChart();
-});
+// document.getElementById('show-chart').addEventListener('click', function(){
+//   drawChart();
