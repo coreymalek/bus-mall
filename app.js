@@ -1,3 +1,11 @@
+// for(var i = 0; i < allImages.length; i++){
+//   // allImages[i].numclicks = allImages[i].name;
+//   if (localStorage.getItem(allImages[i].name) != null) {
+//     localStorage.getItem(JSON.parse(allImages[i].numclicks), allImages[i].name);
+//   }
+// }
+
+
 var container = document.getElementById('container');
 var image1 = document.getElementById('image1');
 var image2 = document.getElementById('image2');
@@ -59,9 +67,8 @@ function randomPic() {
     counter++;
 
   } else {
-    document.getElementById('show-chart').addEventListener('click', function(){
-      drawChart();});
-    counter = 0;
+    document.getElementById('show-chart').addEventListener('click', drawChart);
+    container.removeEventListener('click', randomPic);
     console.log('reached 25 counts');
     //show chart
     //0 counter
@@ -76,13 +83,21 @@ function handleClick() {
   for (var i = 0; i < allImages.length; i++) {
     if (event.target.alt === allImages[i].name) {
       allImages[i].numshown += 1;
+      // localStorage.setItem(allImages[i].name, JSON.stringify(allImages[i].numshown));
       console.log(allImages[i].name + ' has ' + allImages[i].numshown + ' views.');
       allImages[i].numclicks += 1;
-      clicksData[i] = allImages[i].numclicks;
+      // clicksData[i] = allImages[i].numclicks;
+      localStorage.setItem(allImages[i].name, JSON.stringify(allImages[i].numclicks));
       console.log(allImages[i].name + ' has ' + allImages[i].numclicks + ' clicks.');
     }
   }
   randomPic();
+}
+
+function getLocalStorage() {
+  for(var i = 0; i < allImages.length; i++){
+    
+  }
 }
 
 
@@ -120,10 +135,15 @@ function drawChart() {
   });
   chartDrawn = true;
 }
+//**********COME BACK TO THIS*************
 
 function hideChart() {
-  document.getElementById('chart').hidden = true;
+  document.getElementById('hide').addEventListener('click', hideChart);
+  hide.removeEventListener('click', drawChart);
+  // document.getElementById('chart').hidden = true;
 }
+hideChart();
+
 
 // document.getElementById('show-chart').addEventListener('click', function(){
 //   drawChart();
