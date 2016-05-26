@@ -94,12 +94,19 @@ function handleClick() {
   randomPic();
 }
 
-function getLocalStorage() {
-  for(var i = 0; i < allImages.length; i++){
-    
+function loadLocalStorage() {
+  for (var i = 0; i < allImages.length; i++) {
+    if (localStorage.getItem(allImages[i].name) !== null) {
+      var rawdata = JSON.parse(localStorage.getItem(allImages[i].name));
+     // console.log(rawdata);
+     // console.log(rawdata[0], rawdata[1]);
+      allImages[i].numClicks = rawdata[0];
+      allImages[i].numShown = rawdata[1];
+    }
   }
 }
 
+window.addEventListener('load', loadLocalStorage);
 
 container.addEventListener('click', handleClick);
 
